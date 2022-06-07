@@ -25,10 +25,8 @@ class Mouse {
       this.delta = 0;
       this.under = true;
     };
-
     element.addEventListener('mousemove', (e) => {
       this.tick();
-
       update(e);
     });
 

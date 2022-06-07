@@ -2,7 +2,7 @@ class Battlefield {
   ships = [];
   shots = [];
 
-  addShip() { 
+  addShip(ship) { 
     if (this.ships.includes(ship)) {
       return false;
     }
