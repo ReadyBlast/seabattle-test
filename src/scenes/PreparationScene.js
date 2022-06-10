@@ -27,7 +27,9 @@ class PreparationScene extends Scene {
   }
 
   start() {
-    console.log('2');
+    const { player } = this.app;
+    
+    console.log(player.matrix);
   }
 
   update() {
