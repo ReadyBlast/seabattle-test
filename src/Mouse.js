@@ -79,5 +79,6 @@ class Mouse {
     this.pY = this.y;
     this.pLeft = this.left;
     this.pDelta = this.delta;
+    this.delta = 0;
   }
 }

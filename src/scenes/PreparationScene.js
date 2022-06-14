@@ -17,7 +17,6 @@ class PreparationScene extends Scene {
   draggedOffsetY = 0;
 
   init() {
-    console.log(1);
     const { player } = this.app;
 
     for (const { size, direction, startX, startY } of shipDatas) {
@@ -26,11 +25,7 @@ class PreparationScene extends Scene {
     }
   }
 
-  start() {
-    const { player } = this.app;
-    
-    console.log(player.matrix);
-  }
+  start() {}
 
   update() {
     // console.log(3)
@@ -63,8 +58,36 @@ class PreparationScene extends Scene {
     if (!mouse.left && this.draggedShip) {
       const ship = this.draggedShip;
       this.draggedShip = null;
+
+      const { left, top } = ship.div.getBoundingClientRect();
+      const { width, height } = player.cells[0][0].getBoundingClientRect();
+
+      const point = {
+        x: left + width / 2,
+        y: top + height / 2,
+      };
+
+      const cell = player.cells
+        .flat()
+        .find((cell) => isUnderPoint(point, cell));
+
+      if (cell) {
+        const x = parseInt(cell.dataset.x);
+        const y = parseInt(cell.dataset.y);
+
+        player.removeShip(ship);
+        player.addShip(ship, x, y);
+      } else {
+        player.removeShip(ship);
+        player.addShip(ship);
+      }
+    }
+
+    // Вращение
+    if (this.draggedShip && mouse.delta) {
+      this.draggedShip.toggleDirection();
     }
   }
 
-  stop() { }
+  stop() {}
 }

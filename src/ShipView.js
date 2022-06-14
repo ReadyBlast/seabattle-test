@@ -28,6 +28,11 @@ class ShipView extends Ship {
     return true;
   }
 
+  toggleDirection() {
+    const newDirection = this.direction === 'row' ? 'column' : 'row';
+    this.setDirection(newDirection);
+  }
+
    isUnder(point) {
     return isUnderPoint(point, this.div);
   }
