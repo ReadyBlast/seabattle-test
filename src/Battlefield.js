@@ -2,8 +2,8 @@ class Battlefield {
   ships = [];
   shots = [];
 
-  #matrix = null;
-  #changed = true;
+  _private_matrix = null;
+  _private_changed = true;
 
   get loser() {
     for (const ship of this.ships) {
@@ -16,8 +16,8 @@ class Battlefield {
   }
 
   get matrix() {
-    if (!this.#changed) {
-      this.#matrix;
+    if (!this._private_changed) {
+      this._private_matrix;
     }
 
     const matrix = [];
@@ -77,9 +77,9 @@ class Battlefield {
       }
     }
 
-    this.#matrix = matrix;
-    this.#changed = false;
-    return this.#matrix;
+    this._private_matrix = matrix;
+    this._private_changed = false;
+    return this._private_matrix;
   }
 
   get complete() {
@@ -141,7 +141,7 @@ class Battlefield {
       }
     }
 
-    this.#changed = true;
+    this._private_changed = true;
     return true;
   }
 
@@ -156,7 +156,7 @@ class Battlefield {
     ship.x = null;
     ship.y = null;
 
-    this.#changed = true;
+    this._private_changed = true;
     return true;
   }
 
@@ -178,7 +178,7 @@ class Battlefield {
     }
 
     this.shots.push(shot);
-    this.#changed = true;
+    this._private_changed = true;
 
     const matrix = this.matrix;
     const { x, y } = shot;
@@ -218,7 +218,7 @@ class Battlefield {
       }
     }
 
-    this.#changed = true;
+    this._private_changed = true;
     return true;
   }
 
@@ -230,7 +230,7 @@ class Battlefield {
     const index = this.shots.indexOf(shot);
     this.shots.splice(index, 1);
 
-    this.#changed = true;
+    this._private_changed = true;
     return true;
   }
 
