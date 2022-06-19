@@ -16,7 +16,7 @@
         <div class="app-menu">
           <div class="app-actions" data-scene="preparation">
             <button class="app-action" data-computer="simple" disabled>
-              Играть против слабока
+              Играть против слабака
             </button>
             <button class="app-action" data-computer="middle" disabled>
               Играть против среднего
@@ -40,7 +40,8 @@
 
           <div class="app-actions hidden" data-scene="computer">
             <div class="battlefield-status">Ваш ход</div>
-            <button class="app-action" data-action="randomize">Сдаться</button>
+            <button class="app-action" data-action="gaveup">Сдаться</button>
+            <button class="app-action" data-action="again">Играть ещё раз</button>
           </div>
         </div>
         <div data-side="opponent"></div>
@@ -60,6 +61,9 @@
 
     <script src="src/Ship.js"></script>
     <script src="src/ShipView.js"></script>
+
+    <script src="src/Shot.js"></script>
+    <script src="src/ShotView.js"></script>
 
     <script src="src/index.js"></script>
   </body>
