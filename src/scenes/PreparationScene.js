@@ -27,7 +27,7 @@ class PreparationScene extends Scene {
 
     opponent.clear();
     player.removeAllShots();
-    player.ships.forEach((ship) => (ship.killed = false))
+    player.ships.forEach((ship) => (ship.killed = false));
 
     this.removeEventListeners = [];
 
