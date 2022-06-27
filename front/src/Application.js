@@ -1,4 +1,5 @@
 class Application {
+  socket = null;
   mouse = null;
   player = null;
   opponent = null;
@@ -12,23 +13,29 @@ class Application {
     const player = new BattlefieldView(true);
     const opponent = new BattlefieldView(false);
 
-    Object.assign(this, { mouse, player, opponent });
+    const socket = io();
+
+    Object.assign(this, { mouse, player, opponent, socket });
 
     document.querySelector('[data-side="player"]').append(player.root);
     document.querySelector('[data-side="opponent"]').append(opponent.root);
 
     for (const [sceneName, SceneClass] of Object.entries(scenes)) {
       this.scenes[sceneName] = new SceneClass(sceneName, this);
-    } 
+    }
 
     for (const scene of Object.values(this.scenes)) {
       scene.init();
     }
 
+    socket.on('playerCount', (n) => {
+      document.querySelector('[data-playersCount]').textContent = n;
+    });
+
     requestAnimationFrame(() => this.tick());
   }
 
-  tick() { 
+  tick() {
     requestAnimationFrame(() => this.tick());
 
     if (this.activeScene) {
@@ -36,9 +43,9 @@ class Application {
     }
 
     this.mouse.tick();
-  };
+  }
 
-  start(sceneName, ...args) { 
+  start(sceneName, ...args) {
     if (this.activeScene && this.activeScene.name === sceneName) {
       return false;
     }
@@ -56,5 +63,5 @@ class Application {
     scene.start(...args);
 
     return true;
-  };
+  }
 }
