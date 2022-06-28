@@ -5,7 +5,3 @@ const app = new Application({
 });
 
 app.start('preparation');
-
-// document.querySelector('[data-action="randomize"]').click();
-// document.querySelector('[data-type="random"]').disabled = false;
-// document.querySelector('[data-type="random"]').click();
